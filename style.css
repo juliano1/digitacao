@@ -111,7 +111,7 @@ body {
 
 .masthead {
     padding: 1em 2em;
-    background-color: #0D1B2E;
+    background-color: #f0e551;
     color: white;
 }
 
@@ -177,7 +177,7 @@ body {
     padding: .5em 1em;
     font-size: 1.2em;
     font-weight: bold;
-    color: #E95D0F;
+    color: #33e90f;
     background: white ;
     border: 10px solid #E95D0F;
 }
