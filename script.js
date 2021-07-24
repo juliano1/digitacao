@@ -6,11 +6,16 @@ const theTimer = document.querySelector(".timer");
 
 timer = [0,0,0,0]; //minutos, segundos, centésimos e milésimos 
 // Adiciona zero inicial aos números <= 9 (apenas para estética):
-
+function leadingZero(time){
+    if(time <= 9){
+        time = "0" + time;
+    }
+    return time;
+}
 
 // Executa um timer padrão de minuto / segundo / centésimos:
 function runTimer(){
-    let currentTime = timer[0] + ":" + timer[1] + ":" + timer[2];
+    let currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2]);
     theTimer.innerHTML = currentTime;
     timer[3]++;
 
@@ -22,7 +27,21 @@ function runTimer(){
 // Verifica se texto digitado com o fornecido na página:
 function spellCheck() { 
     let textEntered = testArea.value;
-    console.log(textEntered);
+    let originTextMatch = originText.substring(0,textEntered.length);
+
+    if(textEntered == originText){
+
+        testWrapper.style.borderColor = "#429890";
+
+    } else {
+        if (textEntered == originTextMatch) {
+
+            testWrapper.style.borderColor = "#65ccf3"
+        } else {
+            testWrapper.style.borderColor = "#E955D0F"
+        }
+    }
+    
 }
 
 // Inicia o cronômetro:
