@@ -42,7 +42,7 @@ function spellCheck() {
 
             testWrapper.style.borderColor = "#65ccf3"
         } else {
-            testWrapper.style.borderColor = "#E95D0F"
+            testWrapper.style.borderColor = "#FF0000"
         }
     }
     
