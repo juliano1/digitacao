@@ -5,7 +5,10 @@ const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
 
 timer = [0,0,0,0]; //minutos, segundos, centésimos e milésimos 
+var interval;
+var timerRunning = false;
 // Adiciona zero inicial aos números <= 9 (apenas para estética):
+
 function leadingZero(time){
     if(time <= 9){
         time = "0" + time;
@@ -30,6 +33,7 @@ function spellCheck() {
     let originTextMatch = originText.substring(0,textEntered.length);
 
     if(textEntered == originText){
+        clearInterval(interval);
 
         testWrapper.style.borderColor = "#429890";
 
@@ -38,7 +42,7 @@ function spellCheck() {
 
             testWrapper.style.borderColor = "#65ccf3"
         } else {
-            testWrapper.style.borderColor = "#E955D0F"
+            testWrapper.style.borderColor = "#E95D0F"
         }
     }
     
@@ -47,15 +51,24 @@ function spellCheck() {
 // Inicia o cronômetro:
 function start(){
     let textEnteredLength = testArea.value.length;
-    if (textEnteredLength === 0){
-        setInterval(runTimer,10);
+    if (textEnteredLength === 0 && !timerRunning){
+        timerRunning = true;
+        interval = setInterval(runTimer,10);
     }
     console.log(textEnteredLength);
 }
 
 // Função de recomeçar:
 function reset() {
-    console.log("O botão de recomeçar foi clicado.");
+    clearInterval(interval);
+    interval = null;
+    timer = [0,0,0,0];
+    timerRunning = false;
+
+    testArea.value = "";
+    theTimer.innerHTML = "00:00:00";
+    testWrapper.style.borderColor = "grey";
+
 }
 
 // Listeners de eventos para entrada de teclado e o botão de recomeçar:
